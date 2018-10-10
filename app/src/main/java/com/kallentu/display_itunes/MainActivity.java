@@ -17,8 +17,8 @@ import be.ceau.itunesapi.response.Response;
 import be.ceau.itunesapi.response.Result;
 
 // TODO (6): Add tests for the adapter
-// TODO (7): Stylize the adapter contents/xml
 // TODO (8): Add album art if available
+// TODO (9): Add ability to view more information on each list item
 
 /** Primary activity for obtaining user query and searching. */
 public class MainActivity extends AppCompatActivity {

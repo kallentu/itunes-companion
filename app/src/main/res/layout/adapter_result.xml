@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/result_song_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/adapter_result_padding_horizontal"
+    android:paddingEnd="@dimen/adapter_result_padding_horizontal">
 
-    <TextView
-        android:id="@+id/result_artist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="@dimen/result_album_art_dimen"
+        android:layout_height="@dimen/result_album_art_dimen"
+        android:layout_margin="@dimen/result_album_art_margin"
+        android:contentDescription="@string/album_photo_content_description" />
 
-    <TextView
-        android:id="@+id/result_album"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/result_song_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/result_text_margin_top"
+            android:layout_marginBottom="@dimen/result_text_margin_bottom"
+            android:textSize="@dimen/result_song_title_text_size"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/result_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/result_text_margin_bottom"/>
+
+        <TextView
+            android:id="@+id/result_album"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/result_text_margin_bottom"/>
+    </LinearLayout>
 </LinearLayout>

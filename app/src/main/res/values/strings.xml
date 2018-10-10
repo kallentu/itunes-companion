@@ -1,6 +1,5 @@
 <resources>
     <string name="itunes_companion_title">iTunes Companion</string>
-
-    <!-- -->
     <string name="user_query_edit_text_hint">Search for your favorite music..</string>
+    <string name="album_photo_content_description">Album photo</string>
 </resources>
