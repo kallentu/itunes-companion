@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,15 +33,17 @@ public class iTunesResultsListAdapter extends ArrayAdapter<Result> {
         // Checks for existing view already used
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_result, parent, false);
+
+            TextView resultSongTitle = (TextView) convertView.findViewById(R.id.result_song_title);
+            TextView resultArtist = (TextView) convertView.findViewById(R.id.result_artist);
+            TextView resultAlbum = (TextView) convertView.findViewById(R.id.result_album);
+            ImageView resultAlbumArt = (ImageView) convertView.findViewById(R.id.result_album_art);
+
+            resultSongTitle.setText(result.getTrackName());
+            resultArtist.setText(result.getArtistName());
+            resultAlbum.setText(result.getCollectionName());
+            new ImageTask(resultAlbumArt).execute(result.getArtworkUrl100());
         }
-
-        TextView resultSongTitle = (TextView) convertView.findViewById(R.id.result_song_title);
-        TextView resultArtist = (TextView) convertView.findViewById(R.id.result_artist);
-        TextView resultAlbum = (TextView) convertView.findViewById(R.id.result_album);
-
-        resultSongTitle.setText(result.getTrackName());
-        resultArtist.setText(result.getArtistName());
-        resultAlbum.setText(result.getCollectionName());
 
         return convertView;
     }
