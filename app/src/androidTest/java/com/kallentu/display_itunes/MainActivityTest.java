@@ -18,6 +18,7 @@ import be.ceau.itunesapi.response.Result;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasChildCount;
@@ -109,5 +110,25 @@ public class MainActivityTest {
                 .inAdapterView(withId(R.id.results_list))
                 .atPosition(0)
                 .check(matches(notNullValue()));
+    }
+
+    /** Ensures result info page is displayed for first result. */
+    @Test
+    public void result_click_infoActivityDisplayed() {
+        searchBar.perform(typeText(testString));
+        Espresso.onView(withId(R.id.userQueryEditText)).perform(ViewActions.pressKey(KeyEvent.KEYCODE_ENTER));
+
+        onData(is(instanceOf(Result.class)))
+                .inAdapterView(withId(R.id.results_list))
+                .atPosition(0)
+                .perform(click());
+
+        assertNotNull(onView(withId(R.id.info_song_title)));
+        assertNotNull(onView(withId(R.id.info_artist)));
+        assertNotNull(onView(withId(R.id.info_album)));
+        assertNotNull(onView(withId(R.id.info_price)));
+        assertNotNull(onView(withId(R.id.info_release_date)));
+        assertNotNull(onView(withId(R.id.info_genre)));
+        assertNotNull(onView(withId(R.id.info_buy_itunes_button)));
     }
 }
