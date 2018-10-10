@@ -18,7 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <uses-library android:name="android.test.runner"/>
+
+        <uses-library android:name="android.test.runner" />
+
+        <activity
+            android:parentActivityName=".MainActivity"
+            android:name=".SongInfoActivity" />
     </application>
 
 </manifest>

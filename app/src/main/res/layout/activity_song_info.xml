@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".SongInfoActivity">
+
+    <!-- Largest images are stretched at the moment because no larger resources, -->
+    <ImageView
+        android:id="@+id/info_album_art"
+        android:layout_width="@dimen/song_info_album_art_dimen"
+        android:layout_height="@dimen/song_info_album_art_dimen"
+        android:layout_marginTop="@dimen/song_info_album_art_margin"
+        android:layout_marginBottom="@dimen/song_info_album_art_margin"
+        android:contentDescription="@string/album_photo_content_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/info_song_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/song_info_margin_top"
+            android:layout_marginBottom="@dimen/song_info_margin_bottom"
+            android:fontFamily="@font/cabin_condensed_bold"
+            android:textSize="@dimen/song_info_song_title_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/info_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/song_info_margin_bottom"
+            android:textSize="@dimen/song_info_artist_text_size"
+            android:fontFamily="@font/quicksand" />
+
+        <TextView
+            android:id="@+id/info_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/song_info_margin_bottom"
+            android:textSize="@dimen/song_info_album_text_size"
+            android:fontFamily="@font/quicksand" />
+
+        <TextView
+            android:id="@+id/info_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/song_info_margin_bottom"
+            android:fontFamily="@font/quicksand" />
+
+        <TextView
+            android:id="@+id/info_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/song_info_margin_bottom"
+            android:fontFamily="@font/quicksand" />
+
+        <TextView
+            android:id="@+id/info_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/song_info_margin_bottom"
+            android:fontFamily="@font/quicksand" />
+
+        <Button
+            android:id="@+id/info_buy_itunes_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/song_info_margin_bottom"
+            android:text="@string/buy_on_itunes_button_text"
+            android:fontFamily="@font/quicksand"/>
+</LinearLayout>

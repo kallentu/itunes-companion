@@ -1,6 +1,7 @@
 package com.kallentu.display_itunes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ public class iTunesResultsListAdapter extends ArrayAdapter<Result> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Result result = results.get(position);
+        final Result result = results.get(position);
 
         // Checks for existing view already used
         if (convertView == null) {
@@ -43,6 +44,23 @@ public class iTunesResultsListAdapter extends ArrayAdapter<Result> {
             resultArtist.setText(result.getArtistName());
             resultAlbum.setText(result.getCollectionName());
             new ImageTask(resultAlbumArt).execute(result.getArtworkUrl100());
+
+            // Opens information about the track when clicked
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), SongInfoActivity.class);
+                    intent.putExtra("Song Title", result.getTrackName())
+                        .putExtra("Artist", result.getArtistName())
+                        .putExtra("Album", result.getCollectionName())
+                        .putExtra("Album Art", result.getLargestArtworkUrl())
+                        .putExtra("Genre", String.valueOf(result.getPrimaryGenreName()))
+                        .putExtra("Price", String.valueOf(result.getTrackPrice()))
+                        .putExtra("Release Date", result.getReleaseDate())
+                        .putExtra("iTunes Song URL", result.getTrackViewUrl());
+                    getContext().startActivity(intent);
+                }
+            });
         }
 
         return convertView;
