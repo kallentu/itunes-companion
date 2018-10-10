@@ -38,8 +38,8 @@ public class iTunesResultsListAdapter extends ArrayAdapter<Result> {
         TextView resultArtist = (TextView) convertView.findViewById(R.id.result_artist);
         TextView resultAlbum = (TextView) convertView.findViewById(R.id.result_album);
 
-        resultSongTitle.setText(result.getArtistName());
-        resultArtist.setText(result.getTrackName());
+        resultSongTitle.setText(result.getTrackName());
+        resultArtist.setText(result.getArtistName());
         resultAlbum.setText(result.getCollectionName());
 
         return convertView;
