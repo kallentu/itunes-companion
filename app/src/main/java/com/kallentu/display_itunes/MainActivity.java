@@ -6,12 +6,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
-/* Primary activity for obtaining user query and searching. */
+/** Primary activity for obtaining user query and searching. */
 public class MainActivity extends AppCompatActivity {
     private EditText searchBar;
 
-    // TODO (2): Use input to search for a response
-    // TODO (3): Make a class that stores the responses from iTunes
     // TODO (4): Make a list adapter that stores each result
 
     @Override
@@ -26,11 +24,17 @@ public class MainActivity extends AppCompatActivity {
                 // When user presses enter in the search bar
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    //getiTunesResponse();
+                    getiTunesResponse();
                     return true;
                 }
                 return false;
             }
         });
+    }
+
+    /** Runs async task {@link iTunesResultsTask} */
+    private void getiTunesResponse() {
+        String query = searchBar.getText().toString().replace(' ', '+');
+        new iTunesResultsTask().execute(query);
     }
 }
