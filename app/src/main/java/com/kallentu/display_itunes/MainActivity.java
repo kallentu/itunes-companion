@@ -17,7 +17,6 @@ import be.ceau.itunesapi.response.Response;
 import be.ceau.itunesapi.response.Result;
 
 // TODO (6): Add tests for the adapter
-// TODO (8): Add album art if available
 // TODO (9): Add ability to view more information on each list item
 
 /** Primary activity for obtaining user query and searching. */
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     /** Runs async task {@link iTunesResultsTask} to get iTunes API results from search query. */
     private void getiTunesResponse() {
         String query = searchBar.getText().toString().replace(' ', '+');
-        new iTunesResultsTask().execute(query);
+        if (!query.equals("")) new iTunesResultsTask().execute(query);
     }
 
     /** Asynchronous task for obtaining iTunes API results for {@link MainActivity} */
