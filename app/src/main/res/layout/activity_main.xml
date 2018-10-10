@@ -16,6 +16,7 @@
         android:text="@string/itunes_companion_title"
         android:textAllCaps="true"
         android:textSize="@dimen/itunes_companion_title_text_size"
+        android:fontFamily="@font/cabin_condensed_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/userQueryEditText"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/search_bar_margin"
         android:hint="@string/user_query_edit_text_hint"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itunes_companion_title"
