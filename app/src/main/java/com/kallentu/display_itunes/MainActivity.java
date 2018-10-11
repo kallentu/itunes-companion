@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +22,17 @@ import be.ceau.itunesapi.response.Result;
 /** Primary activity for obtaining user query and searching. */
 public class MainActivity extends AppCompatActivity {
     private EditText searchBar;
+    private List<Result> results = new ArrayList<>();
+    private iTunesResultsListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Create global configuration and initialize ImageLoader with this config
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
 
         searchBar = this.findViewById(R.id.userQueryEditText);
         searchBar.setOnKeyListener(new View.OnKeyListener() {
@@ -43,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
     /** Runs async task {@link iTunesResultsTask} to get iTunes API results from search query. */
     private void getiTunesResponse() {
         String query = searchBar.getText().toString().replace(' ', '+');
+
+        // Sets the list of results on main page
+        adapter = new iTunesResultsListAdapter(getApplicationContext(), R.layout.adapter_result, results);
+        ListView resultsList = (ListView)findViewById(R.id.results_list);
+        resultsList.setAdapter(adapter);
+        
         if (!query.equals("")) new iTunesResultsTask().execute(query);
     }
 
@@ -52,23 +67,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected List<Result> doInBackground(String... strings) {
-            List<Result> results = new ArrayList<>();
-            for (String query : strings) {
-                Response response = new Search(query).execute();
-                results.addAll(response.getResults());
-            }
-            return results;
+            Response response = new Search(strings[0]).execute();
+            return response.getResults();
         }
 
         @Override
         protected void onPostExecute(List<Result> results) {
             super.onPostExecute(results);
-
-            // Sets the list of results on main page
-            iTunesResultsListAdapter adapter = new iTunesResultsListAdapter(getApplicationContext(), R.layout.adapter_result, results);
-            ListView resultsList = (ListView)findViewById(R.id.results_list);
-            resultsList.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            adapter.setResults(results);
         }
     }
 

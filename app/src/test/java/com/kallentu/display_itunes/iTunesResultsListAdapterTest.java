@@ -4,6 +4,9 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +34,8 @@ public class iTunesResultsListAdapterTest {
     public void setUp() {
         results = new ArrayList<>();
         adapter = new iTunesResultsListAdapter(mockContext, R.layout.adapter_result, results);
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mockContext).build();
+        ImageLoader.getInstance().init(config);
 
         res1 = new Result();
         res1.setTrackName("Meow");

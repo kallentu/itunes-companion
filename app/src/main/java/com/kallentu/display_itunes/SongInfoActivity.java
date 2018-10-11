@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import javax.xml.transform.Result;
 
 /**
@@ -53,7 +55,6 @@ public class SongInfoActivity extends AppCompatActivity {
         Button buyOniTunesButton = (Button) findViewById(R.id.info_buy_itunes_button);
 
         // Set song data in each view
-        new ImageTask(albumArtImageView).execute(albumArt);
         songTitleTextView.setText(songTitle);
         artistTextView.setText(artist);
         albumTextView.setText(album);
@@ -67,5 +68,8 @@ public class SongInfoActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         });
+
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.displayImage(albumArt, albumArtImageView);
     }
 }
